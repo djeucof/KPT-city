@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using static System.Net.Mime.MediaTypeNames;
+using System;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     //enum GameState { Menu, Questions, Review };
     //GameState current = GameState.Menu;
 
@@ -17,38 +19,42 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject questionPanel;
     TextMeshProUGUI prompt;
     TextMeshProUGUI[] answers;
-    Button[] buttons;
+    [SerializeField] TextMeshProUGUI reviewText;
 
-    //private List<Reviewlist> reviewList;
-    //TextMeshProUGUI[] review;
+    Button[] buttons;
 
     Material material;
     [SerializeField] Color defaultAnswerColor;
     [SerializeField] Color highlightAnswerColor;
     public BackgroundColor BackgroundColor;
-    public ReviewPanelOpener ReviewPanelOpener;
+    public ReviewPanelOpener reviewPanelOpener;
 
-
-    public void PresentQuestion() {
+    public void PresentQuestion()
+    {
         //current = GameState.Questions;
         BackgroundColor.ColorChange();
         ResetButtonColor();
-        foreach (var b in buttons) {
+        foreach (var b in buttons)
+        {
             b.interactable = true;
         }
         var q = questions[currentQuestion];
-        correctAnswer = Random.Range(0, 3);
-        prompt.text = q.start + "__" + q.end;
+        correctAnswer = UnityEngine.Random.Range(0, 3);
+        prompt.text = q.start + " <sprite name=\"Bubble\"> " + q.end;
+        //keep for reference:
+        //prompt.text = q.start + "__" + q.end;
+        //prompt.text = q.start + "U00B0000" + q.end;
+
         var wrong = new string[] { q.wrong1, q.wrong2, q.wrong3 };
 
-        for (int i = 0; i < answers.Length; i++) {
+        for (int i = 0; i < answers.Length; i++)
+        {
             string s = i == correctAnswer ? q.correct : wrong[i];
-            if (i > correctAnswer) {
+            if (i > correctAnswer)
+            {
                 s = wrong[i - 1];
             }
             answers[i].text = s;
-            //review.text = q.start + q.correct + q.end;
-            //Each presented question goes to the list of answers to review.
         }
         // run anims / ...
     }
@@ -56,8 +62,7 @@ public class GameManager : MonoBehaviour {
     public void ButtonPressed(int index) {
         foreach (var b in buttons) {
             b.interactable = false;
-        }
-        if (index == correctAnswer) {
+        } if (index == correctAnswer){
             CorrectAnswer();
         } else {
             WrongAnswer();
@@ -86,7 +91,8 @@ public class GameManager : MonoBehaviour {
         ResetButtonColor();
     }
     void ResetButtonColor() {
-        foreach (var text in answers) {
+        foreach (var text in answers)
+        {
             text.color = defaultAnswerColor;
         }
     }
@@ -103,8 +109,7 @@ public class GameManager : MonoBehaviour {
 
         //currentQuestion = Random.Range(0, ?.Length);
         //currentQuestion = Random.Range(0, questions.Length);
-        //randomize later
-        prompt = questionPanel.transform.Find("Prompt").GetComponent<TextMeshProUGUI>();
+        //randomize
         FindTextComponents();
 
         PresentQuestion();
@@ -116,25 +121,21 @@ public class GameManager : MonoBehaviour {
         answers[0] = questionPanel.transform.Find("Answer0").GetComponentInChildren<TextMeshProUGUI>();
         answers[1] = questionPanel.transform.Find("Answer1").GetComponentInChildren<TextMeshProUGUI>();
         answers[2] = questionPanel.transform.Find("Answer2").GetComponentInChildren<TextMeshProUGUI>();
+        prompt = questionPanel.transform.Find("Prompt").GetComponent<TextMeshProUGUI>();
+        //reviewText = GameObject.Find("ReviewTexts").GetComponent<TextMeshProUGUI>();
     }
 
-    private void ReviewAnswers() {
+    public void ReviewAnswers() {
         //current = GameState.Review;
-        ReviewPanelOpener.OpenReviewPanel();
-        Question q = new Question();
+        reviewPanelOpener.OpenReviewPanel();
         string s = "";
-        // foreach (q in questions shown)
-
         for (int i = 0; i < currentQuestion; i++) {
+            Question q = questions[i];
             s += q.start + "<color=#56C81B>" + q.correct + "</color>" + q.end + "\n";
         }
-
-        //how to send answers to review panel?
-
-    void GoBackToGame() {
-        //current = GameState.Questions;
-        //how to get back to game?
-        ReviewPanelOpener.BackToQuestionPanel();
+        reviewText.text = s;
     }
+    void GoBackToGame() {
+        reviewPanelOpener.BackToQuestionPanel();
     }
 }
