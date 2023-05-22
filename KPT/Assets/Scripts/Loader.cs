@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 
 public class Loader : MonoBehaviour {
+    [SerializeField] string path = "Data";
     private List<Question> questions;
 
     public List<Question> Load() {
@@ -19,7 +20,7 @@ public class Loader : MonoBehaviour {
 
     public void LoadData() {
 
-        var data = Resources.Load<TextAsset>("Data");
+        var data = Resources.Load<TextAsset>(path);
 
         string[] rowData = data.text.Split('\n');
 

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using static System.Net.Mime.MediaTypeNames;
-using System;
+using Unity.VisualScripting;
+//using UnityEngine.UIElements;
+//using System;
+//using Unity.Mathematics;
 
-public class GameManager : MonoBehaviour
-{
-    //enum GameState { Menu, Questions, Review };
-    //GameState current = GameState.Menu;
+public class GameManager : MonoBehaviour {
+    enum GameState { Playing, QuestionsOver };
+
+    // public for debug only
+    [SerializeField] GameState currentState = GameState.Playing;
 
     [SerializeField] Loader loader;
     List<Question> questions;
@@ -17,72 +20,131 @@ public class GameManager : MonoBehaviour
     int correctAnswer = 1;
 
     [SerializeField] GameObject questionPanel;
+    [SerializeField] GameObject FinalReviewPanel;
+    [SerializeField] GameObject GameOverPanel;
+
     TextMeshProUGUI prompt;
     TextMeshProUGUI[] answers;
     [SerializeField] TextMeshProUGUI reviewText;
-
+    [SerializeField] TextMeshProUGUI finalReviewText;
     Button[] buttons;
 
     Material material;
+
     [SerializeField] Color defaultAnswerColor;
     [SerializeField] Color highlightAnswerColor;
+    [SerializeField] Color wrongAnswerColor;
     public BackgroundColor BackgroundColor;
     public ReviewPanelOpener reviewPanelOpener;
+    public QuestionPanelOpener questionPanelOpener;
 
-    public void PresentQuestion()
-    {
-        //current = GameState.Questions;
+    public ParticleSystem[] CorrectParticles;
+    public ParticleSystem[] WrongParticles;
+    public ParticleSystem[] FinalWinParticles;
+
+    public AudioClip[] winSounds;
+    public AudioClip[] loseSounds;
+    public AudioClip finalwin;
+
+    public AudioSource audioSource;
+
+    public GameObject vio;
+    private Animator anim;
+
+    public void StartNewGame() {
+        currentQuestion = 0;
+        currentState = GameState.Playing;
+        questions = loader.Load();
+        questions = ShuffleQuestions(questions);
+        questionPanelOpener.OpenQuestionPanel();
+        PresentQuestion();
+    }
+
+    public void PresentQuestion() {
+        //change bg color:
         BackgroundColor.ColorChange();
+        //change buttons:
         ResetButtonColor();
-        foreach (var b in buttons)
-        {
+
+        foreach (var b in buttons) {
             b.interactable = true;
         }
         var q = questions[currentQuestion];
         correctAnswer = UnityEngine.Random.Range(0, 3);
-        prompt.text = q.start + " <sprite name=\"Bubble\"> " + q.end;
+        // "This question text"   "<sprite>"   "box is here"
+
+        var start = q.start;
+        int lastspace = start.LastIndexOf(" ");
+        if (lastspace == -1) {
+            print("no space");
+        }
+        start = start.Insert(lastspace + 1, "<nobr>");
+
+        var end = q.end;
+        int firstspace = end.IndexOf(" ");
+        if (firstspace == -1) {
+            end += "</nobr>";
+        } else {
+            end = end.Insert(firstspace, "</nobr>");
+        }
+        // "This question <nobr>text <sprite> box</nobr> is here"
+
+        prompt.text = start + " <sprite name=\"Bubble\"> " + end;
         //keep for reference:
         //prompt.text = q.start + "__" + q.end;
         //prompt.text = q.start + "U00B0000" + q.end;
 
         var wrong = new string[] { q.wrong1, q.wrong2, q.wrong3 };
 
-        for (int i = 0; i < answers.Length; i++)
-        {
+        for (int i = 0; i < answers.Length; i++) {
             string s = i == correctAnswer ? q.correct : wrong[i];
-            if (i > correctAnswer)
-            {
+            if (i > correctAnswer) {
                 s = wrong[i - 1];
             }
             answers[i].text = s;
         }
-        // run anims / ...
     }
 
     public void ButtonPressed(int index) {
+        anim.enabled = false;
         foreach (var b in buttons) {
             b.interactable = false;
-        } if (index == correctAnswer){
+        }
+        if (index == correctAnswer) {
             CorrectAnswer();
         } else {
             WrongAnswer();
         }
-    }
 
+    }
     void WrongAnswer() {
-        print("nope!");
-        //anim
+        anim.enabled = true;
+        anim.SetTrigger("TrLose");
+
+        int l = Random.Range(0, loseSounds.Length);
+        audioSource.PlayOneShot(loseSounds[l]);
+
+        answers[correctAnswer].color = wrongAnswerColor;
+
         AfterAnswer();
     }
     void CorrectAnswer() {
-        print("yep!");
+
+        anim.enabled = true;
+        anim.SetTrigger("TrCorrect");
+
         answers[correctAnswer].color = highlightAnswerColor;
+
+        int i = Random.Range(0, CorrectParticles.Length);
+        CorrectParticles[i].Play();
+
+        int w = Random.Range(0, winSounds.Length);
+        audioSource.PlayOneShot(winSounds[w]);
+
         AfterAnswer();
-        // run anims / ...
     }
 
     void AfterAnswer() {
-        // run anims / ...
         Invoke("NextQuestion", 2f);
     }
 
@@ -91,28 +153,30 @@ public class GameManager : MonoBehaviour
         ResetButtonColor();
     }
     void ResetButtonColor() {
-        foreach (var text in answers)
-        {
+        foreach (var text in answers) {
             text.color = defaultAnswerColor;
         }
     }
 
     public void NextQuestion() {
         currentQuestion++;
-        // check & handle if no more questions!
-        //Index was out of range - ReviewPanel
-        PresentQuestion();
+        //print("now in question " + currentQuestion + " out of " + questions.Count);
+        if (currentQuestion < questions.Count) {
+            PresentQuestion();
+        } else {
+            currentState = GameState.QuestionsOver;
+            ReviewAnswers();
+        }
     }
+
     void Start() {
-        questions = loader.Load();
+        anim = vio.GetComponent<Animator>();
+        //IdleAnimRandom();
+
         buttons = questionPanel.GetComponentsInChildren<Button>();
 
-        //currentQuestion = Random.Range(0, ?.Length);
-        //currentQuestion = Random.Range(0, questions.Length);
-        //randomize
         FindTextComponents();
 
-        PresentQuestion();
         material = GetComponent<Material>();
     }
 
@@ -126,16 +190,53 @@ public class GameManager : MonoBehaviour
     }
 
     public void ReviewAnswers() {
-        //current = GameState.Review;
-        reviewPanelOpener.OpenReviewPanel();
+
+        GameObject.Find("Vio").transform.localScale = new Vector3(0, 0, 0);
+
+        if (currentState == GameState.QuestionsOver) {
+            reviewPanelOpener.OpenFinalReviewPanel();
+            finalReviewText.text = ReadReviewAnswers();
+            audioSource.PlayOneShot(finalwin, 0.7F);
+            int i = Random.Range(0, FinalWinParticles.Length);
+            FinalWinParticles[i].Play();
+        } else {
+            reviewPanelOpener.OpenReviewPanel();
+            reviewText.text = ReadReviewAnswers();
+        }
+    }
+
+    public string ReadReviewAnswers() {
         string s = "";
         for (int i = 0; i < currentQuestion; i++) {
             Question q = questions[i];
-            s += q.start + "<color=#56C81B>" + q.correct + "</color>" + q.end + "\n";
+            s += "• " + q.start + "<color=#56C81B>" + q.correct + "</color>" + q.end + "\n";
         }
-        reviewText.text = s;
+        //reviewText.text = s;
+        return s;
     }
-    void GoBackToGame() {
-        reviewPanelOpener.BackToQuestionPanel();
+
+    public void GoBackToGame() {
+        if (currentState == GameState.Playing) {
+            reviewPanelOpener.BackToQuestionPanel();
+
+        } else if (currentState == GameState.QuestionsOver) {
+            FinalReviewPanel.SetActive(false);
+            GameOverPanel.SetActive(true);
+            GameObject.Find("Vio").transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+
+        } else {
+            Debug.LogError("unknown state");
+        }
+    }
+
+    List<Question> ShuffleQuestions(List<Question> original) {
+        var questions = new List<Question>(original);
+        for (int i = 0; i < questions.Count - 1; i++) {
+            int j = Random.Range(i, questions.Count);
+            var temp = questions[j];
+            questions[j] = questions[i];
+            questions[i] = temp;
+        }
+        return questions;
     }
 }

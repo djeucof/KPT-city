@@ -1,4 +1,4 @@
-Mene ra,nn,nt,tn,nk,nnt,alle!
+Mene ra,nn,nt,tn,nk,t,alle!
 Helsin,g,k,kk,nk,nt,in pörssi avasi laskuun.
 Minä lu,_,k,kk,g,kt,en kirjaa.
 Ruo,_,k,kk,kt,nt,an jälkeen olen iloinen.
@@ -15,12 +15,12 @@ Minun var,p,v,pp,d,,aat palelevat talvella.
 Tarvitsen villasu,k,kk,_,d,,at!
 Kalle au,tt,t,d,_,,aa minua.
 Asu,kk,k,_,d,,aat siivoavat pihaa.
-Asia,kk,k,_,d,,ostavat vaatteita.
+Asia,kk,k,_,d,,aat ostavat vaatteita.
 Vaa,tt,t,_,d,,eet ovat kalliita.
 Ka,t,tt,d,_,,olla on lunta.
 Ty,t,tt,d,_,,öllä on kaunis mekko.
 Minä muutan Helsin,k,ng,n,_,,iin kesällä.
-Kalle asuu Helsin,g,k,k,_,,issä.
+Kalle asuu Helsin,g,k,ki,_,,issä.
 Kyrylo vie,tt,t,d,_,,ää aikaa Diman kanssa.
 Minun kur,kk,k,d,_,,uun koskee!
 Käyn pan,k,kk,_,nk,,issa perjantaina.
@@ -31,14 +31,14 @@ Luen tänään ko,k,kk,_,ee,,eeseen.
 Kaupun,g,k,ki,k,,issa on paljon ihmisiä.
 Kaupu,nk,ng,k,kk,,iin menee monta junaa.
 Ostan piira,kk,k,nk,ng,,aa kaupasta.
-Ku,p,pp,pi,ii,,issa on kahvia.
+Ku,p,pp,pi,ip,,issa on kahvia.
 Ju,tt,t,dd,d,,elin kaverin kanssa.
-Madot elävät mu,ll,lt,la,lli,,assa.
+Madot elävät mu,ll,lt,la,li,,assa.
 Minä käyn kau,p,pp,pa,ta,,assa.
-Kalle ymmä,rt,rr,r,rrä,,ää suomen kieltä.
+Kalle ymmä,rt,rr,r,rä,,ää suomen kieltä.
 Minä ke,rt,rr,_,d,,aan partitiivia joka päivä.
 Suomen li,p,pp,pu,u,,un värit ovat sininen ja valkoinen.
-Minun saap,p,p,_,pa,,aat ovat rikki!
+Minun saap,p,pa,_,pp,,aat ovat rikki!
 Aloi,t,tt,_,d,,an tänään ajoissa.
 Keski,t,tt,d,_,,y paremmin!
 Lu,_,k,d,t,,en Suomen mestaria.
@@ -90,7 +90,7 @@ Ka,d,t,tt,dd,,ulla on paljon roskia.
 Aja,tt,t,d,te,,elen sinua usein.
 Ostan ku,lt,ll,t,tt,,aa halvalla.
 Kallen ymmä,rt,rr,r,t,,ää suomea.
-Su,lj,lk,l,j,,"en oven, kun lähden."
+Su,lj,lk,l,j,,en oven.
 Pii,rr,rt,r,t,,än kauniita kuvia.
 Ty,kk,k,kä,ää,,ään koirista.
 Mei,kk,k,kä,ka,,aan joka aamu.
@@ -117,15 +117,15 @@ On,g,k,_,t,,in kesällä kaloja merestä.
 Tarvitsen pienen lusi,k,kk,ka,_,,an jälkiruokaa varten.
 Vaatekaa,p,pp,v,pv,,in ovi on rikki.
 Vaatekaa,pp,p,v,pv,,i on tosi sotkuinen!
-Tarvitsen uuden ku,p,pp,v,pi,,"in, koska entinen meni rikki."
+Tarvitsen uuden ku,p,pp,v,pi,,in. Entinen meni rikki.
 Vaa,t,tt,te,_,,e on tosi kallis!
 Mie,t,tt,ti,_,,itkö koskaan Italian matkaa?
-Ope,t,tt,taa,_,,an suomea Laajasalon opistossa.
+Ope,t,tt,ta,_,,an suomea Laajasalon opistossa.
 Nau,t,tt,ti,_,,in ruoasta ravintolassa.
 Ruo,_,k,kk,ka,,an jälkeen oppitunti jatkuu.
 Ruo,k,kk,_,ka,,a on herkullista!
-Haluan syödä paljon ruo,k,kk,_,ka,,"aa, kun Ramadan on ohi!"
-Okse,nn,nt,t,n,,"an, koska olen sairas."
+Haluan syödä paljon ruo,k,kk,_,ka,,aa Ramadan jälkeen!
+Okse,nn,nt,t,n,,an. Olen sairas.
 Ke,rr,rt,r,t,,otko minulle tarinan?
 Hän ke,rt,rr,r,t,,oo tosi hyviä tarinoita!
 O,t,tt,d,_,,atko lisää kahvia?
@@ -134,7 +134,7 @@ Heikki au,tt,t,d,_,,aa Annia.
 Minä läh,d,t,_,dd,,en kotiin.
 Kirjoi,t,tt,_,d,,atko kirjaa?
 Me ostimme Flow-li,p,pp,v,pv,,ut.
-Minun täytyy lu,k,kk,_,ke,,
+Minun täytyy lu,k,kk,_,ke,,ea tämä kirja.
 Kii,t,tt,d,dd,,itkö sinun ystävääsi?
 Kalle kii,tt,t,dd,d,,ää ystävää lahjasta.
 Voitko au,tt,t,d,dd,,aa minua?
@@ -173,7 +173,7 @@ Kesällä menen Linnanmä,_,k,kk,d,,elle.
 Pöy,d,t,tt,dd,,ällä on paljon tavaraa.
 Tämä pöy,t,d,tt,dd,,ä on antiikkia.
 Lu,p,v,pp,vv,,aatko auttaa minua?
-Voitko lu,v,p,vv,pp,,"ata minulle, että olet ystävällinen?"
+Voitko lu,v,p,vv,pp,,ata minulle sen?
 Lähdetkö La,pp,p,v,vv,,iin minun kanssani?
 Lapset lei,kk,k,_,ki,,ivät ulkona.
 Haluan le,v,p,vv,pp,,ätä ruoan jälkeen.
@@ -183,11 +183,73 @@ Mihin aikaan kurssi al,k,_,kk,p,,aa?
 Minä al,_,k,kk,p,,an nyt lähteä.
 Ty,t,tt,_,ty,,öllä on kauniit hiukset.
 Mitä sinä tarkoi,t,tt,_,d,,at?
-Hän tarkoi,tt,t,d,_,,"aa, että suomen kieli ei ole vaikea kieli."
+Mitä hän tarkoi,tt,t,d,_,,aa?
 Hän ei pu,_,k,d,kk,,e sukkia jalkaan.
-Minä en ku,lj,lk,lkk,d,,e kävellen kouluun.
+Minä en ku,lj,lk,kk,d,,e kävellen kouluun.
 Minun lapseni o,pp,p,v,_,,i kävelemään noin yksivuotiaana. 
 Sä,ng,nk,nn,g,,yn alla on leluja.
 Tykkäätkö hyppiä sä,ng,nk,nn,g,,yllä?
 Sä,nk,ng,nn,g,,y on 120 cm leveä.
 Hiih,d,t,dd,tt,,itkö tänä talvena?
+Jäkomä,_,kk,k,kt,,en uimahalli on viikonlopun ajan kiinni.
+An,n,nt,kn,t,,a minulle inspiraatiota.
+An,n,kk,ss,nt,,a meille tarvittavia tietoja.
+O,t,tt,ta,,,a omena!
+Minä lei,v,p,pp,,,on kakun.
+No joko te nyt läh,d,tt,de,,,ette?
+Saanko pi,t,dä,tt,,,ää tämän?
+Pi,d,dd,t,,,ätkö siitä?
+Nyt minun pi,t,tt,k,,,ää mennä.
+Hän pi,t,st,m,,,ää koirat.
+Meidan pi,t,tt,di,,,i olla pahikset!
+Nämä tähdet eivät pi,t,d,tt,,,äneet roolihahmoistaan.
+Häntä pi,d,de,t,,,etään hyvänä kuljettajana.
+Hän ei koh,t,d,tt,,,ele kirjoja kovin hellästi.
+Hän on pi,t,d,k,,,änyt koiraa vapaana.
+Eivät pi,t,d,dt,,,äneet sopivana.
+Lupaukset eivät pi,t,dd,d,,,äneet.
+Oho! Nuk,k,kk,ku,,,umaanmenoaika!
+Mutta me ty,k,kk,_,,,ätään siitä!
+Enkä pel,k,_,kk,,,ääkään tätä maailmaa.
+Tänään minun pi,t,d,ti,,,i olla Helsingissä.
+Minun pi,t,tt,d,,,i kirjoittaa sisustuksesta.
+Pi,t,d,tt,,,i olla elämäni onnellisinta aikaa.
+Hänen pi,t,k,d,,,ää todistaa olevansa hyvä laulaja.
+Hänestä piti olla haasta,tt,t,te,,,elu eräässä sanomalehdessä.
+Ku,p,pp,_,,,issa on kahvia.
+Opettaja an,t,n,_,,,aa kuusi kullanarvoista neuvoa.
+Olisi vain kannattanut an,t,n,d,,,aa sen olla.
+Haluatko an,t,tt,n,,,aa meille palautetta?
+Koulu an,t,n,tt,,,aa lapsille turvaa.
+Kerran saa,v,p,pp,,,un takaisin.
+Miten saa,v,p,vv,,,un paikalle?
+Tee heti kun saa,v,pp,vk,,,ut Suomeen.
+Sitten saa,p,v,pp,,,uu lämpöaalto!
+Hääväki saa,p,pp,v,,,uu.
+Syksy saa,p,vv,v,,,uu. 
+Joulu saa,p,vv,v,,,puu jokaiselle.
+Ku,t,d,tt,,,oa vai neuloa?
+Koronan pelossa vah,d,ti,di,,,imme toisiamme.
+Mikä taho vah,t,ti,d,,,ii mediaa?
+Kuka vah,t,ti,d,,,ii vartijoita?
+Mies vah,t,di,d,,,ii hänen menojaan jatkuvasti.
+Helsingin kaupunki ha,k,kk,_,,,ee kahta toimialajohtajaa.
+Kalle ha,k,kk,ke,,,ee töitä.
+Miten ha,_,k,kk,,,en harjoittelupaikkaa?
+Miten ha,_,ee,k,,,en avustusta?
+O,lj,lk,ll,,,essa on paljon sokeria.
+O,lk,lj,kk,,,i sopii hyvin pieneläimille.
+O,lk,lj,jj,,,ea voi käyttää kuivikkeena kanoille.
+Terve jär,k,rk,kk,,,i on paras lääke.
+"""Jä",r,k,rr,,,"ki ja tunteet"" on Jane Austenin romaani vuodelta 1811. "
+"""Puhtaan jär",j,k,rj,,,"en kritiikki"" on Immanuel Kantin tunnetuin kirja."
+Tunne voitti jär,j,rj,r,,,en.
+Miksi päätä sär,k,r,rk,,,ee?
+Punaisin ruusu puh,k,ee,kk,,,eaa kukkaan.
+Luonto puh,k,hh,_,,,eaa kukkaan.
+Rengas on puh,j,k,e,,,ennut. Mitä teen?
+Mikään kupla ei todellakaan ole puh,j,h,kk,,,ennut
+Näin pysyt viileänä pu,v,k,kk,,,ussa.
+Hänet voi nähdä pu,v,k,_,,,ussa vaikka koiria ulkoiluttamassa.
+Milloin pu,k,v,kk,,,u istuu?
+Kolmiosainen pu,k,v,kk,,,u on tyylitietoisen valinta.
